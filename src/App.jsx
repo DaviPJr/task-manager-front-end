@@ -9,7 +9,7 @@ function App() {
   const fetchTasks = async () => {
     try {
       const { data } = await axios.get(
-        "https://task-manager-davi-e56224ebcdf9.herokuapp.com/tasks"
+        "https://task-manager-backend-u0gw.onrender.com/tasks"
       );
       console.log(data);
       setTasks(data);
