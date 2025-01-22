@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 import "./Tasks.scss";
 
+import TaskItem from "./TaskItem";
+
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
 
@@ -32,7 +34,7 @@ const Tasks = () => {
           {tasks
             .filter((task) => task.completed === false)
             .map((lastTask, index) => (
-              <p key={index}>{lastTask.description}</p>
+              <TaskItem key={index} task={lastTask} />
             ))}
         </div>
       </div>
@@ -43,7 +45,7 @@ const Tasks = () => {
           {tasks
             .filter((task) => task.completed)
             .map((completedTask, index) => (
-              <p key={index}>{completedTask.description}</p>
+              <TaskItem key={index} task={completedTask} />
             ))}
         </div>
       </div>
