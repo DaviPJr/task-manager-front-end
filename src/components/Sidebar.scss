@@ -1,5 +1,5 @@
 .sidebar-container {
-  max-width: 181px;
+  max-width: 200px;
   height: 100vh;
   background: #111;
   padding: 56px 28px;
@@ -7,6 +7,13 @@
 
   @media (max-width: 768px) {
     display: none;
+  }
+
+  .logo {
+    margin-left: -25px;
+    img {
+      height: 80px;
+    }
   }
 
   display: flex;
