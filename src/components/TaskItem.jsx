@@ -1,10 +1,22 @@
 /* eslint-disable react/prop-types */
 import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 import "./TaskItem.scss";
 
 const TaskItem = ({ task }) => {
+  const handleTaskDeletion = async () => {
+    try {
+      await axios.delete(
+        `https://task-manager-backend-u0gw.onrender.com/tasks/${task.id}`
+      );
+      toast.success("Tarefa excluída com sucesso!");
+    } catch (error) {
+      toast.error("Algo deu errado...", error);
+    }
+  };
+
   return (
     <div className="task-item-container">
       <div className="task-description">
@@ -24,7 +36,7 @@ const TaskItem = ({ task }) => {
       </div>
 
       <div className="delete">
-        <AiFillDelete size={18} color="#F97474" />
+        <AiFillDelete size={18} color="#F97474" onClick={handleTaskDeletion} />
       </div>
     </div>
   );
