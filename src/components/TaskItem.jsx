@@ -5,12 +5,13 @@ import axios from "axios";
 
 import "./TaskItem.scss";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, fetchTasks }) => {
   const handleTaskDeletion = async () => {
     try {
       await axios.delete(
         `https://task-manager-backend-u0gw.onrender.com/tasks/${task.id}`
       );
+      await fetchTasks();
       toast.success("Tarefa excluída com sucesso!");
     } catch (error) {
       toast.error("Algo deu errado...", error);
