@@ -22,6 +22,10 @@ const AddTask = () => {
           "A tarefa precisa de uma descrição para ser adicionada."
         );
       }
+      await axios.post("https://task-manager-backend-u0gw.onrender.com/tasks", {
+        description: task,
+        completed: false,
+      });
     } catch (error) {
       console.error(error);
     }
