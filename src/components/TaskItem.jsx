@@ -18,20 +18,39 @@ const TaskItem = ({ task, fetchTasks }) => {
     }
   };
 
+  const handleTasksUpdate = async (e) => {
+    try {
+      await axios.patch(
+        `https://task-manager-backend-u0gw.onrender.com/tasks/${task.id}}`,
+        {
+          completed: e.target.checked,
+        }
+      );
+      await fetchTasks();
+      toast.success("A tarefa foi modificada com sucesso!");
+    } catch (error) {
+      toast.error("Algo deu errado...", error);
+    }
+  };
+
   return (
     <div className="task-item-container">
       <div className="task-description">
         <label
           className={
-            task.isCompleted
+            task.completed
               ? "checkbox-container-completed"
               : "checkbox-container"
           }
         >
           {task.description}
-          <input type="checkbox" defaultChecked={task.isCompleted} />
+          <input
+            type="checkbox"
+            checked={task.completed}
+            onChange={(e) => handleTasksUpdate(e)}
+          />
           <span
-            className={task.isCompleted ? "checkmark completed" : "checkmark"}
+            className={task.completed ? "checkmark completed" : "checkmark"}
           ></span>
         </label>
       </div>
