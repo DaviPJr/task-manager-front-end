@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
@@ -8,7 +9,7 @@ import "./AddTask.scss";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 
-const AddTask = () => {
+const AddTask = ({ fetchTasks }) => {
   const [task, setTask] = useState("");
 
   const onChange = (e) => {
@@ -26,8 +27,12 @@ const AddTask = () => {
         description: task,
         completed: false,
       });
+
+      await fetchTasks();
+      setTask(" ");
+      toast.success("Tarefa adicionada com sucesso!");
     } catch (error) {
-      console.error(error);
+      toast.error("Algo deu errado...", error);
     }
   };
 
