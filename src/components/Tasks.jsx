@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { toast } from "react-toastify";
 
 import "./Tasks.scss";
 
@@ -16,14 +17,22 @@ const Tasks = () => {
       );
       console.log(data);
       setTasks(data);
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error("Não foi possível recuperar as tarefas do banco de dados...");
     }
   };
 
   useEffect(() => {
     fetchTasks();
   }, []);
+
+  const lastTasks = useMemo(() => {
+    return tasks.filter((task) => task.completed === false);
+  }, [tasks]);
+
+  const completedTasks = useMemo(() => {
+    return tasks.filter((task) => task.completed === true);
+  }, [tasks]);
 
   return (
     <div className="tasks-container">
@@ -32,26 +41,22 @@ const Tasks = () => {
         <h3>Últimas tarefas</h3>
         <AddTask fetchTasks={fetchTasks} />
         <div className="tasks-list">
-          {tasks
-            .filter((task) => task.completed === false)
-            .map((lastTask, index) => (
-              <TaskItem key={index} task={lastTask} fetchTasks={fetchTasks} />
-            ))}
+          {lastTasks.map((lastTask, index) => (
+            <TaskItem key={index} task={lastTask} fetchTasks={fetchTasks} />
+          ))}
         </div>
       </div>
 
       <div className="completed-tasks">
         <h3>Tarefas concluídas</h3>
         <div className="tasks-list">
-          {tasks
-            .filter((task) => task.completed)
-            .map((completedTask, index) => (
-              <TaskItem
-                key={index}
-                task={completedTask}
-                fetchTasks={fetchTasks}
-              />
-            ))}
+          {completedTasks.map((completedTask, index) => (
+            <TaskItem
+              key={index}
+              task={completedTask}
+              fetchTasks={fetchTasks}
+            />
+          ))}
         </div>
       </div>
     </div>
