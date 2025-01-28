@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/");
+    navigate("/Davi");
   };
 
   return (
