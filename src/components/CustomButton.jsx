@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./CustomButton.scss";
 
 const CustomButton = ({ children, onClick }) => {

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 
 import "./Tasks.scss";
@@ -10,7 +10,7 @@ import AddTask from "./AddTask";
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       const { data } = await axios.get(
         "https://task-manager-backend-u0gw.onrender.com/tasks"
@@ -20,11 +20,11 @@ const Tasks = () => {
     } catch {
       toast.error("Não foi possível recuperar as tarefas do banco de dados...");
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
 
   const lastTasks = useMemo(() => {
     return tasks.filter((task) => task.completed === false);
