@@ -2,14 +2,14 @@ import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 import "./TaskItem.scss";
 
 const TaskItem = ({ task, fetchTasks }) => {
   const handleTaskDeletion = async () => {
     try {
-      await axios.delete(
-        `https://task-manager-backend-u0gw.onrender.com/tasks/${task.id}`
-      );
+      await axios.delete(`${apiUrl}/tasks/${task.id}`);
       await fetchTasks();
       toast.success("Tarefa excluída com sucesso!");
     } catch (error) {
@@ -19,12 +19,9 @@ const TaskItem = ({ task, fetchTasks }) => {
 
   const handleTasksUpdate = async (e) => {
     try {
-      await axios.patch(
-        `https://task-manager-backend-u0gw.onrender.com/tasks/${task.id}}`,
-        {
-          completed: e.target.checked,
-        }
-      );
+      await axios.patch(`${apiUrl}/tasks/${task.id}}`, {
+        completed: e.target.checked,
+      });
       await fetchTasks();
       toast.success("A tarefa foi modificada com sucesso!");
     } catch (error) {

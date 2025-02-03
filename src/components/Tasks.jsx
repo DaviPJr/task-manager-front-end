@@ -2,6 +2,8 @@ import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 import "./Tasks.scss";
 
 import TaskItem from "./TaskItem";
@@ -12,9 +14,7 @@ const Tasks = () => {
 
   const fetchTasks = useCallback(async () => {
     try {
-      const { data } = await axios.get(
-        "https://task-manager-backend-u0gw.onrender.com/tasks"
-      );
+      const { data } = await axios.get(`${apiUrl}/tasks`);
       console.log(data);
       setTasks(data);
     } catch {

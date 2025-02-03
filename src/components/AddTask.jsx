@@ -3,6 +3,8 @@ import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 import "./AddTask.scss";
 
 import CustomInput from "./CustomInput";
@@ -22,7 +24,7 @@ const AddTask = ({ fetchTasks }) => {
           "A tarefa precisa de uma descrição para ser adicionada."
         );
       }
-      await axios.post("https://task-manager-backend-u0gw.onrender.com/tasks", {
+      await axios.post(`${apiUrl}/tasks`, {
         description: task,
         completed: false,
       });
