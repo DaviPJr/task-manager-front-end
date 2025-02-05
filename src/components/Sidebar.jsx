@@ -1,7 +1,7 @@
 import "./Sidebar.scss";
 
 import CustomButton from "./CustomButton";
-import logo from "../assets/logo.svg";
+import logo from "../assets/newLogo.png";
 
 import { useNavigate } from "react-router-dom";
 

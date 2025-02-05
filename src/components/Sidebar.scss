@@ -10,10 +10,9 @@
   }
 
   .logo {
-    margin-left: -25px;
-    img {
-      height: 80px;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   display: flex;

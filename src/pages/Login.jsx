@@ -2,7 +2,7 @@ import CustomButton from "../components/CustomButton";
 
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
-import logo from "../assets/logo.svg";
+import logo from "../assets/newLogo.png";
 
 const Login = () => {
   const navigate = useNavigate();
